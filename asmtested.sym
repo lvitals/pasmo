@@ -1,0 +1,2 @@
+first		EQU 00003H
+second		EQU 00004H
