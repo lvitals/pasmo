@@ -19,10 +19,13 @@ using std::string;
 using std::vector;
 using std::runtime_error;
 
+// Define the version of Pasmo (assembler)
 const string pasmoversion(VERSION);
 
+// Empty class for usage (help) message
 class Usage { };
 
+// Exception for when an option requires an argument
 class NeedArgument : public runtime_error
 {
 public:
@@ -31,6 +34,7 @@ public:
     { }
 };
 
+// Exception for invalid options
 class InvalidOption : public runtime_error
 {
 public:
@@ -39,8 +43,10 @@ public:
     { }
 };
 
+// Stream for standard error output
 std::ostream * perr = & cerr;
 
+// Command-line option definitions
 const string opt1("-1");
 const string opt8("-8");
 const string optd("-d");
@@ -49,32 +55,34 @@ const string optB("-B");
 const string optE("-E");
 const string optI("-I");
 
-const string opt86        ("--86");
-const string optalocal    ("--alocal");
-const string optamsdos    ("--amsdos");
-const string optbin       ("--bin");
-const string optbracket   ("--bracket");
-const string optcdt       ("--cdt");
-const string optcdtbas    ("--cdtbas");
-const string optcmd       ("--cmd");
-const string optequ       ("--equ");
-const string opterr       ("--err");
-const string opthex       ("--hex");
-const string optmsx       ("--msx");
-const string optname      ("--name");
-const string optnocase    ("--nocase");
-const string optpass3     ("--pass3");
-const string optplus3dos  ("--plus3dos");
-const string optprl       ("--prl");
-const string optpublic    ("--public");
-const string optsdrel     ("--sdrel");
-const string opttap       ("--tap");
-const string opttapbas    ("--tapbas");
-const string opttrs       ("--trs");
-const string opttzx       ("--tzx");
-const string opttzxbas    ("--tzxbas");
-const string optw8080     ("--w8080");
-const string optwerror    ("--werror");
+const string opt86("--86");
+const string optalocal("--alocal");
+const string optamsdos("--amsdos");
+const string optbin("--bin");
+const string optbracket("--bracket");
+const string optcdt("--cdt");
+const string optcdtbas("--cdtbas");
+const string optcmd("--cmd");
+const string optequ("--equ");
+const string opterr("--err");
+const string opthex("--hex");
+const string optmsx("--msx");
+const string optname("--name");
+const string optnocase("--nocase");
+const string optpass3("--pass3");
+const string optplus3dos("--plus3dos");
+const string optprl("--prl");
+const string optpublic("--public");
+const string optsdrel("--sdrel");
+const string opttap("--tap");
+const string opttapbas("--tapbas");
+const string opttrs("--trs");
+const string opttzx("--tzx");
+const string opttzxbas("--tzxbas");
+const string optw8080("--w8080");
+const string optwerror("--werror");
+const string opthelp("--help");
+const string optshorthelp("-h");
 
 class Options
 {
@@ -93,6 +101,7 @@ public:
     string getfilepublic() const;
     string getheadername() const { return headername; }
     void apply(Asm & assembler) const;
+    void showHelp() const;
 private:
     emitfunc_t emitfunc;
     static const emitfunc_t emitdefault;
@@ -119,6 +128,7 @@ private:
     string headername;
 };
 
+// Definição da função de emissão padrão
 const Options::emitfunc_t Options::emitdefault(& Asm::emitobject);
 
 Options::Options(int argc, char * * argv) :
@@ -138,39 +148,39 @@ Options::Options(int argc, char * * argv) :
     int argpos;
     for (argpos = 1; argpos < argc; ++argpos)
     {
-        const string arg(argv [argpos] );
+        const string arg(argv[argpos]);
         if (arg == optbin)
-            emitfunc = & Asm::emitobject;
+            emitfunc = &Asm::emitobject;
         else if (arg == opthex)
-            emitfunc = & Asm::emithex;
+            emitfunc = &Asm::emithex;
         else if (arg == optprl)
-            emitfunc = & Asm::emitprl;
+            emitfunc = &Asm::emitprl;
         else if (arg == optcmd)
-            emitfunc = & Asm::emitcmd;
+            emitfunc = &Asm::emitcmd;
         else if (arg == optsdrel)
-            emitfunc = & Asm::emitsdrel;
+            emitfunc = &Asm::emitsdrel;
         else if (arg == optpass3)
             pass3 = true;
         else if (arg == optplus3dos)
-            emitfunc = & Asm::emitplus3dos;
+            emitfunc = &Asm::emitplus3dos;
         else if (arg == opttap)
-            emitfunc = & Asm::emittap;
+            emitfunc = &Asm::emittap;
         else if (arg == opttrs)
-            emitfunc = & Asm::emittrs;
+            emitfunc = &Asm::emittrs;
         else if (arg == opttzx)
-            emitfunc = & Asm::emittzx;
+            emitfunc = &Asm::emittzx;
         else if (arg == optcdt)
-            emitfunc = & Asm::emitcdt;
+            emitfunc = &Asm::emitcdt;
         else if (arg == opttapbas)
-            emitfunc = & Asm::emittapbas;
+            emitfunc = &Asm::emittapbas;
         else if (arg == opttzxbas)
-            emitfunc = & Asm::emittzxbas;
+            emitfunc = &Asm::emittzxbas;
         else if (arg == optcdtbas)
-            emitfunc = & Asm::emitcdtbas;
+            emitfunc = &Asm::emitcdtbas;
         else if (arg == optamsdos)
-            emitfunc = & Asm::emitamsdos;
+            emitfunc = &Asm::emitamsdos;
         else if (arg == optmsx)
-            emitfunc = & Asm::emitmsx;
+            emitfunc = &Asm::emitmsx;
         else if (arg == optpublic)
             emitpublic = true;
         else if (arg == optname)
@@ -178,7 +188,7 @@ Options::Options(int argc, char * * argv) :
             ++argpos;
             if (argpos >= argc)
                 throw NeedArgument(optname);
-            headername = argv [argpos];
+            headername = argv[argpos];
         }
         else if (arg == optv)
             verbose = true;
@@ -200,19 +210,23 @@ Options::Options(int argc, char * * argv) :
             mode86 = true;
         else if (arg == optwerror)
             werror = true;
+        else if (arg == opthelp || arg == optshorthelp)
+        {
+            showHelp();
+        }
         else if (arg == optI)
         {
             ++argpos;
             if (argpos >= argc)
                 throw NeedArgument(optI);
-            includedir.push_back(argv [argpos] );
+            includedir.push_back(argv[argpos]);
         }
         else if (arg == optE || arg == optequ)
         {
             ++argpos;
             if (argpos >= argc)
                 throw NeedArgument(arg);
-            labelpredef.push_back(argv [argpos] );
+            labelpredef.push_back(argv[argpos]);
         }
         else if (arg == "--")
         {
@@ -229,22 +243,22 @@ Options::Options(int argc, char * * argv) :
 
     if (argpos >= argc)
         throw Usage();
-    filein = argv [argpos];
+    filein = argv[argpos];
     ++argpos;
     if (argpos >= argc)
         throw Usage();
 
-    fileout = argv [argpos];
+    fileout = argv[argpos];
     ++argpos;
 
     if (argpos < argc)
     {
-        filesymbol = argv [argpos];
+        filesymbol = argv[argpos];
         ++argpos;
 
-        if (! emitpublic && argpos < argc)
+        if (!emitpublic && argpos < argc)
         {
-            filepublic = argv [argpos];
+            filepublic = argv[argpos];
             ++argpos;
         }
 
@@ -252,16 +266,13 @@ Options::Options(int argc, char * * argv) :
             cerr << "WARNING: Extra arguments ignored\n";
     }
 
-    if (headername.empty() )
+    if (headername.empty())
         headername = fileout;
 }
 
 string Options::getfilepublic() const
 {
-    if (emitpublic)
-        return filesymbol;
-    else
-        return filepublic;
+    return emitpublic ? filesymbol : filepublic;
 }
 
 void Options::apply(Asm & assembler) const
@@ -279,21 +290,63 @@ void Options::apply(Asm & assembler) const
     if (bracketonly)
         assembler.bracketonly();
     if (warn8080)
-        assembler.warn8080 ();
+        assembler.warn8080();
     if (mode86)
-        assembler.set86 ();
+        assembler.set86();
     if (werror)
-        assembler.setwerror ();
+        assembler.setwerror();
     if (pass3)
-        assembler.setpass3 ();
+        assembler.setpass3();
 
-    for (size_t i = 0; i < includedir.size(); ++i)
-        assembler.addincludedir(includedir [i] );
+    for (const auto& dir : includedir)
+        assembler.addincludedir(dir);
 
-    for (size_t i = 0; i < labelpredef.size(); ++i)
-        assembler.addpredef(labelpredef [i] );
+    for (const auto& label : labelpredef)
+        assembler.addpredef(label);
 
     assembler.setheadername(headername);
+}
+
+void Options::showHelp() const
+{
+    cerr << "Pasmo v." << pasmoversion
+         << " (C) 2004-2021 Julian Albo\n"
+         << "Usage:\n"
+         << "\tpasmo [options] source object [symbol]\n\n"
+         << "Options:\n"
+         << "General options:\n"
+         << "\t-h, --help\tShow this help message\n"
+         << "\t-d\t\tShow debug information during assembly\n"
+         << "\t-1\t\tShow debug information also on the first pass\n"
+         << "\t-v\t\tVerbose mode. Displays progress during assembly\n"
+         << "\t-B\t\tBracket-only mode: parentheses are reserved for expressions\n"
+         << "\t-I <dir>\tAdd a directory to the search path for `INCLUDE` and `INCBIN`\n"
+         << "\t--nocase\tMake identifiers case-insensitive\n"
+         << "\t--err\t\tDirect error messages to standard output instead of standard error\n"
+         << "\t--name <name>\tSet the header name (default is the file name)\n"
+         << "\t--public\tInclude only public symbols in the symbol table listing\n\n"
+         << "File output options:\n"
+         << "\t--bin\t\tGenerate the object file in pure binary format (without header)\n"
+         << "\t--hex\t\tGenerate the object file in Intel HEX format\n"
+         << "\t--prl\t\tGenerate the object file in PRL format (CP/M Plus RSX)\n"
+         << "\t--cmd\t\tGenerate the object file in CMD format (CP/M 86)\n"
+         << "\t--msx\t\tGenerate the object file for MSX Basic with a `BLOAD` header\n"
+         << "\t--tap\t\tGenerate a `.tap` file for Spectrum emulators (tape image)\n"
+         << "\t--tzx\t\tGenerate a `.tzx` file for Spectrum emulators (tape image)\n"
+         << "\t--cdt\t\tGenerate a `.cdt` file for Amstrad CPC emulators (tape image)\n"
+         << "\t--amsdos\tGenerate the object file with an Amsdos header (Amstrad CPC disk)\n"
+         << "\t--plus3dos\tGenerate the object file with a PLUS3DOS header (Spectrum disk)\n"
+         << "\t--tapbas\tSame as `--tap`, but adds a Basic loader\n"
+         << "\t--tzxbas\tSame as `--tzx`, but adds a Basic loader\n"
+         << "\t--cdtbas\tSame as `--cdt`, but adds a Basic loader\n\n"
+         << "Additional options:\n"
+         << "\t--werror\tTreat warnings as errors\n"
+         << "\t--alocal\tAutolocal mode: labels starting with `_` are local, ending at the next global label\n"
+         << "\t--sdrel\t\tGenerate object files in SDCC linker `.rel` format\n"
+         << "\t--trs\t\tGenerate object files in TRS-80 CMD format\n"
+         << "\t--w8080\t\tDisplay a warning when using Z80 instructions that don't exist in 8080\n"
+         << "\t--86\t\tGenerate 8086 code\n";
+    exit(0);
 }
 
 int doit(Asm & assembler, int argc, char * * argv)
@@ -302,14 +355,12 @@ int doit(Asm & assembler, int argc, char * * argv)
 
     Options option(argc, argv);
 
-    if (option.redirerr() )
-        perr = & cout;
-
-    // Assemble.
+    if (option.redirerr())
+        perr = &cout;
 
     option.apply(assembler);
 
-    assembler.loadfile(option.getfilein() );
+    assembler.loadfile(option.getfilein());
     assembler.processfile();
 
     // Generate ouptut file.
@@ -371,50 +422,55 @@ int doit(Asm & assembler, int argc, char * * argv)
     return 0;
 }
 
+
 } // namespace
 
-int main(int argc, char * * argv)
+int main(int argc, char **argv)
 {
     Asm assembler;
 
-    // Call doit and show possible errors.
+    // Calls 'doit' and handles possible errors
     try
     {
         return doit(assembler, argc, argv);
     }
-    catch (AsmError & err)
+    catch (AsmError &err)
     {
-        assembler.showerrorinfo(* perr, err.getline(), err.message());
+        // Handles specific AsmError
+        assembler.showerrorinfo(*perr, err.getline(), err.message());
     }
-    catch (std::logic_error & e)
+    catch (std::logic_error &e)
     {
-        * perr << "ERROR: " << e.what() << '\n' <<
-            "This error is unexpected, please "
-            "send a bug report.\n";
+        // Handles logical errors
+        *perr << "ERROR: " << e.what() << '\n'
+              << "This error is unexpected, please send a bug report.\n";
     }
-    catch (std::exception & e)
+    catch (std::exception &e)
     {
-        * perr << "ERROR: " << e.what() << '\n';
+        // Handles general std::exception
+        *perr << "ERROR: " << e.what() << '\n';
     }
     catch (Usage &)
     {
-        cerr <<    "Pasmo v. " << pasmoversion <<
-            " (C) 2004-2021 Julian Albo\n\n"
-            "Usage:\n\n"
-            "\tpasmo [options] source object [symbol]\n\n"
-            "See the README file for details.\n";
+        // Displays usage message
+        cerr << "Pasmo v." << pasmoversion
+             << " (C) 2004-2021 Julian Albo\n"
+             << "Usage:\n"
+             << "\tpasmo [options] source object [symbol]\n\n"
+             << "For more details, use -h or --help.\n";
     }
     catch (ErrorAlreadyReported)
     {
-        // What it says on the tin
+        // Ignores the ErrorAlreadyReported exception
     }
     catch (...)
     {
+        // Handles any unexpected exception
         cerr << "ERROR: Unexpected exception.\n"
-            "Please send a bug report.\n";
+             << "Please send a bug report.\n";
     }
 
-    // Added to fix Debian bug report #394733
+    // Returns 1 to indicate failure
     return 1;
 }
 
