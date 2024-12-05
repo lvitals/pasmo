@@ -345,7 +345,8 @@ void Options::showHelp() const
          << "\t--sdrel\t\tGenerate object files in SDCC linker `.rel` format\n"
          << "\t--trs\t\tGenerate object files in TRS-80 CMD format\n"
          << "\t--w8080\t\tDisplay a warning when using Z80 instructions that don't exist in 8080\n"
-         << "\t--86\t\tGenerate 8086 code\n";
+         << "\t--86\t\tGenerate 8086 code\n\n"
+         << "\tNote: If no output format option is specified, `--bin` is assumed.\n\n";
     exit(0);
 }
 
