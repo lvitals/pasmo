@@ -19,7 +19,7 @@ Uso e distribuição permitidos sob os termos da licença GPL v.3.
     
 3.  **Executar os testes automáticos via CTest:**
     
-    `cd build ctest --output-on-failure`
+    `cd build && ctest --output-on-failure`
     
 4.  **Executar testes customizados manualmente:**
     

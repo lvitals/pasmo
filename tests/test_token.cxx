@@ -1,6 +1,6 @@
 // test_token.cxx
 
-#include "token.h"
+#include "../src/token.h"
 
 #include "test_protocol.h"
 

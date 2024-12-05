@@ -3,7 +3,7 @@
 BIN="asmtested.bin"
 SYM="asmtested.sym"
 
-PASMO=./build/pasmo
+PASMO=../build/pasmo
 
 count=0
 

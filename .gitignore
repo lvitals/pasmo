@@ -1,1 +1,7 @@
+*.o
 build
+tests/*.bin
+tests/*.tap
+tests/*.tzx
+tests/*.p3d
+tests/*.cdt

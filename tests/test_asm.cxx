@@ -1,8 +1,8 @@
 // test_asm.cxx
 
-#include "token.h"
-#include "asm.h"
-#include "asmerror.h"
+#include "../src/token.h"
+#include "../src/asm.h"
+#include "../src/asmerror.h"
 
 #include "test_protocol.h"
 

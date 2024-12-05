@@ -1,6 +1,6 @@
 // test_protocol.cxx
 
-#include "pasmotypes.h"
+#include "../src/pasmotypes.h"
 #include "test_protocol.h"
 
 namespace Pasmo

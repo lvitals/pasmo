@@ -19,7 +19,7 @@ For updates or more information:
 
 #### Run automatic tests via CTest:
 
-`cd build ctest --output-on-failure`
+`cd build && ctest --output-on-failure`
 
 #### Run custom tests manually:
 
