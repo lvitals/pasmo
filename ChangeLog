@@ -1,1 +1,101 @@
-See the NEWS file for changes.
+Version 0.5.5
+- Added options --sdrel for SDCC linker .rel format and --trs for TRS-80 CMD format.
+- Inserted entry address in the hex format end record.
+- Fixed filename in AMSDOS header.
+- Added support for IFDEF and IFNDEF directives.
+
+Version 0.5.4.beta2
+- Added third pass option and automatic switch to it on phase errors.
+
+Version 0.5.4.beta1
+- Phase error detection.
+- Added debug build option.
+
+Version 0.5.3
+- Fixed bug where several errors returned exit status 0.
+
+Version 0.5.2
+- Added warning when the 64KB limit is crossed.
+- All warnings now display line information.
+
+Version 0.5.1
+- Enhanced REPT syntax with control variable, initial value, and increment.
+- Macro parameters are now expanded inside REPT and IRP.
+- Added new ## operator and .SHIFT directive for use inside macros.
+- Added --bin command-line option to explicitly select raw binary mode.
+- Public symbol listing can now be generated alongside the complete listing.
+
+Version 0.5.0
+- Added new directives .ERROR and .WARNING.
+- Added new operators HIGH, LOW, !, &&, ||, and conditional expressions.
+- Added synonyms for existing operators: &, |, =, ~, !=, <, >, <=, >=, <<, >>.
+- Brackets [] can now be used for indirection, with optional bracket-only mode.
+- Added support for embedded '$' in number formats.
+- Identifiers with '$' are stripped after checking reserved words.
+- Added options to generate 8086 code from Z80 sources.
+- Added support for .tzx and .cdt tape images with or without a BASIC loader.
+
+Version 0.4.0
+- Fixed debug messages for autolocal blocks being shown without debug options.
+- PROC and LOCAL now work in autolocal mode.
+- Added command-line options -v, -E, and --equ.
+- Added DEFINED operator.
+- Fixed bug in nested IF blocks causing unbalanced ENDIF errors.
+
+Version 0.3.7
+- Added --alocal option for autolocal mode.
+
+Version 0.3.6
+- Added -I option.
+- Fixed bug in TAP checksum code.
+- Added --nocase option for case-insensitive operation.
+
+Version 0.3.5
+- Added -err option to send error messages to standard output.
+
+Version 0.3.4
+- Added support for undocumented SLL instruction.
+
+Version 0.3.3
+- Some undocumented Z80 instructions are now accepted (see undoc.asm).
+
+Version 0.3.2
+- Improved clarity of some error messages.
+- Fixed $ operator to evaluate the beginning of the current instruction.
+- Added % operator (same as MOD).
+
+Version 0.3.1
+- Added new output format --tapbas.
+- Fixed issues with * and / token handling.
+
+Version 0.3.0
+- Fixed dependencies.
+- Added support for numbers with & prefix.
+- Fixed bugs in LD A and LD simple instructions.
+- Added directives: DEFL, MACRO, REPT, IRP, ENDM, EXITM.
+- Improved error handling for unbalanced PROC blocks.
+
+Version 0.2.4
+- Added directives: LOCAL, PROC, ENDP (see local.asm for examples).
+
+Version 0.2.3
+- Added MSX output format.
+- Binary numbers now accept % prefix.
+- Added operators EQ, LT, LE, GT, GE, and NE.
+
+Version 0.2.2
+- Improved debug output control.
+
+Version 0.2.1
+- Fixed incorrect line number display for errors.
+- Added INCBIN directive for binary file inclusion.
+- File names can now be quoted with single or double quotes.
+
+Version 0.2.0
+- Added .tap object format and --name option.
+
+Version 0.1.1
+- Added support for negative offsets in (ix + offset) or (iy + offset).
+
+Version 0.1.0
+- Added PRL format code generation for CP/M Plus RSX.

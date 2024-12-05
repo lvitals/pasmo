@@ -1,4 +1,4 @@
-## PASMO, ASSEMBLADOR Z80 MULTIPLATAFORMA
+## PASMO - ASSEMBLADOR Z80 MULTIPLATAFORMA
 
 (C) 2004-2022 Julián Albo  
 Uso e distribuição permitidos sob os termos da licença GPL v.3.
@@ -7,23 +7,25 @@ Uso e distribuição permitidos sob os termos da licença GPL v.3.
 
 [https://pasmo.speccy.org/](https://pasmo.speccy.org/)
 
+- - -
+
 ### Para compilar o projeto:
 
-1.  **Configurar o projeto:**
+#### Configurar o projeto:
     
-    `cmake -S . -B build`
+`cmake -S . -B build`
     
-2.  **Compilar o projeto:**
+#### Compilar o projeto:
     
-    `cmake --build build`
+`cmake --build build`
     
-3.  **Executar os testes automáticos via CTest:**
+#### Executar os testes automáticos via CTest:
     
-    `cd build && ctest --output-on-failure`
+`cd build && ctest --output-on-failure`
     
-4.  **Executar testes customizados manualmente:**
+#### Executar testes customizados manualmente:
     
-    `./test_cli.sh`
+`tests/test_cli.sh`
     
 
 ### Documentação
@@ -66,6 +68,8 @@ A documentação está disponível apenas em inglês no arquivo `pasmodoc.html`,
 | `-E`, `--equ` | Pré-define um rótulo. |
 | `-8`, `--w8080` | Exibe um aviso ao usar instruções Z80 que não existem no 8080. |
 | `--86` | Gera código 8086. |
+| `--sdrel` | Gera arquivos objeto no formato .rel do linker SDCC. |
+| `--trs` | Gera arquivos objeto no formato CMD para TRS-80. |
 
 **Nota:** Se nenhuma opção de formato de saída for especificada, será assumido `--bin`.
 

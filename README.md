@@ -1,4 +1,4 @@
-**PASMO, CROSS-PLATFORM Z80 ASSEMBLER**  
+## PASMO - CROSS-PLATFORM Z80 ASSEMBLER
 (C) 2004-2022 Julián Albo  
 Usage and distribution permitted under the terms of the GPL v.3 license.
 
@@ -23,7 +23,7 @@ For updates or more information:
 
 #### Run custom tests manually:
 
-`./test_cli.sh`
+`tests/test_cli.sh`
 
 - - -
 
@@ -69,6 +69,8 @@ The documentation is available only in English in the file `pasmodoc.html`, incl
 | `-E`, `--equ` | Predefine a label. |
 | `-8`, `--w8080` | Display a warning when using Z80 instructions that do not exist in the 8080. |
 | `--86` | Generate 8086 code. |
+| `--sdrel` | Generate object files in SDCC linker .rel format. |
+| `--trs` | Generate object files in TRS-80 CMD format. |
 
 - - -
 
