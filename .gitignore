@@ -5,3 +5,4 @@ tests/*.tap
 tests/*.tzx
 tests/*.p3d
 tests/*.cdt
+vscode/
