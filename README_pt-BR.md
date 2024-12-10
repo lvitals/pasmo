@@ -11,13 +11,16 @@ Uso e distribuição permitidos sob os termos da licença GPL v.3.
 
 ### Para compilar o projeto:
 
-#### Configurar o projeto:
+#### Configurar e compilação:
     
 `cmake -S . -B build`
     
-#### Compilar o projeto:
-    
 `cmake --build build`
+
+#### Configuração e compilação alternativa (usando Ninja):
+`cmake -Wno-dev --fresh -B build -G Ninja`
+
+`ninja -C build`
     
 #### Executar os testes automáticos via CTest:
     

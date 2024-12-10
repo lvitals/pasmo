@@ -9,13 +9,17 @@ For updates or more information:
 
 ### To compile the project:
 
-#### Configure the project:
+#### Configure and build:
 
 `cmake -S . -B build`
 
-#### Build the project:
-
 `cmake --build build`
+
+
+#### Alternative configuration and build (using Ninja):
+`cmake -Wno-dev --fresh -B build -G Ninja`
+
+`ninja -C build`
 
 #### Run automatic tests via CTest:
 
